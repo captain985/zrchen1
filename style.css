@@ -4,6 +4,139 @@
     box-sizing: border-box;
 }
 
+/* 关键帧动画 */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: scale(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.5);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes merge {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-5px);
+    }
+    75% {
+        transform: translateX(5px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(237, 194, 46, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(237, 194, 46, 0);
+    }
+}
+
+@keyframes slideFromLeft {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromRight {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideFromTop {
+    from {
+        transform: translateY(-100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideFromBottom {
+    from {
+        transform: translateY(100%);
+    }
+    to {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes particle-float {
+    0% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) translateX(var(--tx)) scale(0);
+    }
+}
+
+@keyframes slideDownPanel {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 body {
     font-family: "Arial", sans-serif;
     background-color: #faf8ef;
@@ -63,6 +196,23 @@ body {
     font-weight: bold;
 }
 
+.sound-toggle-btn {
+    background-color: #bbada0;
+    border: none;
+    color: #fff;
+    padding: 15px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 20px;
+    transition: all 0.3s ease;
+    min-width: 50px;
+}
+
+.sound-toggle-btn:hover {
+    background-color: #a89888;
+    transform: scale(1.1);
+}
+
 .game-intro {
     font-size: 14px;
     color: #776e65;
@@ -85,6 +235,7 @@ body {
 
 .new-game-btn:hover {
     background-color: #9f8a76;
+    animation: bounce 0.6s ease-in-out;
 }
 
 .game-board {
@@ -118,7 +269,125 @@ body {
     transition: all 0.15s ease-in-out;
 }
 
-/* 方块数值样式 */
+.tile.new-tile {
+    animation: pop 0.3s ease-out;
+}
+
+.tile.merged {
+    animation: merge 0.2s ease-out;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.particle {
+    position: absolute;
+    pointer-events: none;
+}
+
+.particle-element {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: particle-float 1s ease-out forwards;
+}
+
+.stats-container {
+    position: relative;
+    margin-top: 20px;
+}
+
+.stats-toggle-btn {
+    background-color: #8f7a66;
+    border: none;
+    color: #f9f6f2;
+    padding: 12px 20px;
+    font-size: 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.stats-toggle-btn:hover {
+    background-color: #9f8a76;
+}
+
+.stats-panel {
+    display: none;
+    background-color: #f9f6f2;
+    border-radius: 6px;
+    padding: 20px;
+    margin-top: 10px;
+    border: 2px solid #bbada0;
+    animation: slideDownPanel 0.3s ease-out;
+}
+
+.stats-panel.show {
+    display: block;
+}
+
+.stats-panel h3 {
+    color: #776e65;
+    margin-bottom: 15px;
+    font-size: 16px;
+}
+
+.history-list {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.history-item {
+    padding: 10px;
+    margin: 8px 0;
+    background-color: #ede0c8;
+    border-radius: 3px;
+    font-size: 12px;
+    color: #776e65;
+    border-left: 4px solid #8f7a66;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-score {
+    font-weight: bold;
+    color: #f65e3b;
+    font-size: 14px;
+}
+
+.history-status {
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: bold;
+}
+
+.history-status.win {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.history-status.lose {
+    background-color: #f44336;
+    color: white;
+}
+
+.empty-history {
+    text-align: center;
+    color: #bbada0;
+    padding: 20px;
+    font-size: 14px;
+}
+
 .tile-2 {
     background-color: #eee4da;
     color: #776e65;
@@ -178,6 +447,7 @@ body {
     color: #edc22e;
     font-size: 25px;
     box-shadow: 0 0 20px rgba(243, 215, 116, 0.5);
+    animation: pulse 2s infinite;
 }
 
 .tile-super {
@@ -197,6 +467,7 @@ body {
     align-items: center;
     justify-content: center;
     z-index: 1000;
+    animation: fadeIn 0.3s ease-in;
 }
 
 .game-over-container.show {
