@@ -1,0 +1,259 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Arial", sans-serif;
+    background-color: #faf8ef;
+    color: #776e65;
+}
+
+.container {
+    max-width: 500px;
+    margin: 20px auto;
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 80px;
+    font-weight: bold;
+    color: #776e65;
+    margin: 0;
+}
+
+.info {
+    display: flex;
+    gap: 30px;
+}
+
+.score-container,
+.best-container {
+    background-color: #bbada0;
+    border-radius: 3px;
+    padding: 15px;
+    color: #fff;
+    font-size: 16px;
+    text-align: center;
+    min-width: 80px;
+}
+
+.score-container p,
+.best-container p {
+    margin: 5px 0;
+}
+
+.score-container p:first-child,
+.best-container p:first-child {
+    font-size: 12px;
+    margin-bottom: 10px;
+}
+
+.score-container p:last-child,
+.best-container p:last-child {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.game-intro {
+    font-size: 14px;
+    color: #776e65;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+.new-game-btn {
+    background-color: #8f7a66;
+    border: none;
+    color: #f9f6f2;
+    padding: 15px 30px;
+    font-size: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+.new-game-btn:hover {
+    background-color: #9f8a76;
+}
+
+.game-board {
+    background-color: #bbada0;
+    border-radius: 6px;
+    padding: 10px;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1;
+}
+
+.tile-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 10px;
+}
+
+.tile {
+    background-color: #cdc1b4;
+    border-radius: 3px;
+    color: #776e65;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    transition: all 0.15s ease-in-out;
+}
+
+/* 方块数值样式 */
+.tile-2 {
+    background-color: #eee4da;
+    color: #776e65;
+}
+
+.tile-4 {
+    background-color: #ede0c8;
+    color: #776e65;
+}
+
+.tile-8 {
+    background-color: #f2b179;
+    color: #f9f6f2;
+}
+
+.tile-16 {
+    background-color: #f59563;
+    color: #f9f6f2;
+}
+
+.tile-32 {
+    background-color: #f67c5f;
+    color: #f9f6f2;
+}
+
+.tile-64 {
+    background-color: #f65e3b;
+    color: #f9f6f2;
+}
+
+.tile-128 {
+    background-color: #edcf72;
+    color: #edcf72;
+    font-size: 30px;
+}
+
+.tile-256 {
+    background-color: #edcc61;
+    color: #edcc61;
+    font-size: 30px;
+}
+
+.tile-512 {
+    background-color: #edc850;
+    color: #edc850;
+    font-size: 30px;
+}
+
+.tile-1024 {
+    background-color: #edc53f;
+    color: #edc53f;
+    font-size: 25px;
+}
+
+.tile-2048 {
+    background-color: #edc22e;
+    color: #edc22e;
+    font-size: 25px;
+    box-shadow: 0 0 20px rgba(243, 215, 116, 0.5);
+}
+
+.tile-super {
+    background-color: #3c3322;
+    color: #edc22e;
+    font-size: 20px;
+}
+
+.game-over-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.game-over-container.show {
+    display: flex;
+}
+
+.game-over-content {
+    background-color: #f9f6f2;
+    padding: 40px;
+    border-radius: 6px;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.game-over-content p {
+    font-size: 36px;
+    color: #776e65;
+    margin-bottom: 30px;
+    font-weight: bold;
+}
+
+.retry-btn {
+    background-color: #8f7a66;
+    border: none;
+    color: #f9f6f2;
+    padding: 15px 40px;
+    font-size: 18px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+    background-color: #9f8a76;
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+
+    .header h1 {
+        font-size: 60px;
+    }
+
+    .tile {
+        font-size: 28px;
+    }
+
+    .tile-128,
+    .tile-256,
+    .tile-512 {
+        font-size: 24px;
+    }
+
+    .tile-1024,
+    .tile-2048 {
+        font-size: 20px;
+    }
+}

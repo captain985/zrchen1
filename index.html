@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2048 游戏</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>2048</h1>
+            <div class="info">
+                <div class="score-container">
+                    <p>分数</p>
+                    <p id="score">0</p>
+                </div>
+                <div class="best-container">
+                    <p>最高分</p>
+                    <p id="best">0</p>
+                </div>
+            </div>
+        </div>
+        
+        <p class="game-intro">
+            向同一方向滑动相同数字的方块使其合并。每次合并时，新的方块会随机出现。达到2048就能赢！
+        </p>
+        
+        <button id="newGameBtn" class="new-game-btn">新游戏</button>
+        
+        <div id="gameBoard" class="game-board">
+            <div class="tile-container"></div>
+        </div>
+        
+        <div class="game-over-container" id="gameOverContainer">
+            <div class="game-over-content">
+                <p id="gameOverText">游戏结束！</p>
+                <button id="retryBtn" class="retry-btn">再来一局</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="game.js"></script>
+</body>
+</html>
